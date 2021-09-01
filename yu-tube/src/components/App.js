@@ -20,7 +20,7 @@ class App extends Component {
     this.setState({ videos: response.data.items });
   };
 
-  onVideoSelect = (video) => {
+  onSelectVideo = (video) => {
     this.setState({ selectedVideo: video });
   };
 
@@ -29,12 +29,19 @@ class App extends Component {
       <>
         <div className="ui container">
           <SearchBar onSubmit={this.handleSearchSubmit} />
-
-          <VideoDetail video={this.state.selectedVideo} />
-          <VideoList
-            videos={this.state.videos}
-            onVideoSelect={this.onVideoSelect}
-          />
+          <div className="ui grid">
+            <div className="row">
+              <div className="ten wide column">
+                <VideoDetail video={this.state.selectedVideo} />
+              </div>
+              <div className="six wide column">
+                <VideoList
+                  videos={this.state.videos}
+                  onSelectVideo={this.onSelectVideo}
+                />
+              </div>
+            </div>
+          </div>
         </div>
       </>
     );
